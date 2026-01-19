@@ -1,4 +1,5 @@
 import pygame
+import gui_bid_screen  # Add this at the top
 
 # List of bidders 
 bidders = []
@@ -53,6 +54,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # Switch to bid screen on click (for demo)
+            pygame.quit()
+            gui_bid_screen.bid_screen()
+            running = False
 
     # Fill background
     screen.fill(DARK_BG)
@@ -91,7 +97,7 @@ while running:
         screen.blit(price_label, (x + 10, y + 80))
         
         # Price value
-        price_text = font.render(f"${item['starting_price']:.2f}", True, PINK)
+        price_text = font.render(f"£{item['starting_price']:.2f}", True, PINK)
         screen.blit(price_text, (x + 10, y + 100))
 
     pygame.display.flip()
